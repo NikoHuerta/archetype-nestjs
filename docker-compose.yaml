@@ -1,0 +1,25 @@
+version: '3.5'
+services:
+  redis:
+    image: "redis:alpine"
+    command: redis-server --requirepass rediscoopeuch
+    container_name: redis_msauthprepago
+    ports:
+      - "6379:6379"
+  db:
+    image: postgres
+    restart: always
+    container_name: postgres_msauthprepago
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: root
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: msauthprepago
+  adminer:
+    image: adminer
+    container_name: adminer_msauthprepago
+    restart: always
+    ports:
+      - 8080:8080
