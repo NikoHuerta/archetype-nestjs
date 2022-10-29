@@ -21,7 +21,6 @@
       "@src/*": ["./*"],
       "@common/*": ["./_common/*"],
       "@constants": ["./_common/constants"],
-      "@coopuech/*": ["./_common/coopeuch/*"],
       "@decorators": ["./_common/decorators"],
       "@dtos": ["./_common/dtos"],
       "@enums": ["./_common/enums"],

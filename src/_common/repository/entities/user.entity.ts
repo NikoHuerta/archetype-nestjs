@@ -1,46 +1,28 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  Index,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
-import { Event } from './event.entity';
-import { Token } from './token.entity';
-import { RoleEnum } from '@enums';
+import { prop } from '@typegoose/typegoose';
+import { RegisterEnum, RoleEnum } from '@enums';
 
-@Index(['id'], { unique: true })
-@Index(['rut'], { unique: true })
-@Entity('users', { schema: 'public' })
 export class User {
-  @PrimaryGeneratedColumn({ type: 'bigint', name: 'id' })
-  id: number;
+  @prop({ required: true })
+  public firstName: string;
 
-  @Column('character varying', {
-    name: 'rut',
-    unique: true,
-    length: 30,
-  })
-  rut: string;
+  @prop({ required: true })
+  public lastName: string;
 
-  @Column('character varying', {
-    name: 'role',
-    length: 128,
-    default: RoleEnum.client,
-  })
-  role: string;
+  @prop({ required: true, unique: true })
+  public email: string;
 
-  @CreateDateColumn()
-  created_at: Date;
+  @prop({ required: true })
+  public password: string;
 
-  @UpdateDateColumn()
-  updated_at: Date;
+  @prop({ required: true, unique: true })
+  public rut: string;
 
-  @OneToMany(() => Event, (event) => event.userId)
-  events: Event[];
+  @prop({ required: false, enum: RoleEnum, default: RoleEnum.client })
+  public role: string;
 
-  @OneToMany(() => Token, (token) => token.userId)
-  tokens: Token[];
+  @prop({ required: false, enum: RegisterEnum, default: RegisterEnum.web })
+  public source: string;
+
+  @prop({ required: false, default: true })
+  public active: boolean;
 }

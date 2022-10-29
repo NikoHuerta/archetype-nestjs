@@ -5,22 +5,23 @@ import {
   NestModule,
   MiddlewareConsumer,
 } from '@nestjs/common';
+import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+
 import type { ClientOpts } from 'redis';
 import * as redisStore from 'cache-manager-redis-store';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import * as path from 'path';
-import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
+import { TypegooseModule } from 'nestjs-typegoose';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { LoggerModule } from '@common/logger/logger.module';
-import { CoopeuchModule } from '@coopuech/coopeuch.module';
 import { RepositoryModule } from '@repository/repository.module';
+import { LoggerModule } from '@common/logger/logger.module';
+import { UsersModule } from './users/users.module';
 import { GlobalExceptionsFilter } from '@filters';
 import { LoggerInterceptor } from './_common/interceptor';
 import { LoggerMiddleware } from './_common/middleware';
+import { ExampleResourceModule } from './example-resource/example-resource.module';
 
 @Module({
   imports: [
@@ -42,49 +43,21 @@ import { LoggerMiddleware } from './_common/middleware';
       isGlobal: true,
       inject: [ConfigService],
     }),
-    TypeOrmModule.forRootAsync({
+    TypegooseModule.forRootAsync({
       useFactory: (configService: ConfigService<NodeJS.ProcessEnv>) => {
-        const typeOrmConfig = {
-          type: configService.get<'postgres'>('DB_SOURCE'),
-          host: configService.get('DB_HOST_WRITE'),
-          port: +configService.get('DB_PORT'),
-          username: configService.get('DB_USER'),
-          password: configService.get('DB_PASSWORD'),
-          database: configService.get('DB_DATABASE'),
-          autoLoadEntities: true,
-          keepConnectionAlive: true,
-          // TODO: dejarlo en false y generar una migracion inicial | conversar si se deja en sincronizacion
-          synchronize: true,
-          entities: [path.join(__dirname, '**', '*.entity.{ts,js}')],
-          logging: process.env.NODE_ENV === 'development',
-          replication: {
-            master: {
-              host: configService.get('DB_HOST_WRITE'),
-              port: +configService.get('DB_PORT'),
-              username: configService.get('DB_USER'),
-              password: configService.get('DB_PASSWORD'),
-              database: configService.get('DB_DATABASE'),
-            },
-            slaves: [
-              {
-                host: configService.get('DB_HOST_READ'),
-                port: +configService.get('DB_PORT'),
-                username: configService.get('DB_USER'),
-                password: configService.get('DB_PASSWORD'),
-                database: configService.get('DB_DATABASE'),
-              },
-            ],
-          },
+        const config = {
+          uri: configService.get<string>('DB_SOURCE'),
+          useNewUrlParser: true,
         };
-
-        return typeOrmConfig;
+        return config;
       },
       inject: [ConfigService],
     }),
     LoggerModule,
-    CoopeuchModule,
     RepositoryModule,
+    UsersModule,
     AuthModule,
+    ExampleResourceModule,
   ],
   controllers: [AppController],
   providers: [

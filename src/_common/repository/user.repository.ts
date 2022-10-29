@@ -1,27 +1,41 @@
 import { Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
-import { InjectRepository } from '@nestjs/typeorm';
-import { FindOneOptions } from 'typeorm/find-options/FindOneOptions';
 
+import { InjectModel } from 'nestjs-typegoose';
+import { ReturnModelType } from '@typegoose/typegoose';
 import { User } from '@entities';
 
 @Injectable()
 export class UserRepository {
-  constructor(@InjectRepository(User) private userRepo: Repository<User>) {}
+  constructor(
+    @InjectModel(User)
+    private readonly userModel: ReturnModelType<typeof User>,
+  ) {}
 
-  /**
-   * Find one user by criterial
-   * @param criteria
-   */
-  async findOne(criteria: FindOneOptions<User>): Promise<User> {
-    return this.userRepo.findOne(criteria);
+  async findById(id: string): Promise<User> {
+    return await this.userModel.findById(id).lean();
   }
 
-  /**
-   * Save user by criterial
-   * @param criteria
-   */
-  async save(payload: Partial<User>): Promise<User> {
-    return this.userRepo.save(payload);
+  async findOne(user: Partial<User>): Promise<User> {
+    return await this.userModel.findOne(user).lean();
+  }
+
+  async find(user: Partial<User>): Promise<User[]> {
+    return await this.userModel.find(user).lean();
+  }
+
+  async create(user: Partial<User>): Promise<User> {
+    return this.userModel.create(user);
+  }
+
+  async save(id: string, payload: Partial<User>): Promise<User[]> {
+    return await this.userModel.findByIdAndUpdate(id, payload, { new: true });
+  }
+
+  async delete(id: string): Promise<User> {
+    return await this.userModel.findByIdAndUpdate(
+      id,
+      { active: false },
+      { new: true },
+    );
   }
 }

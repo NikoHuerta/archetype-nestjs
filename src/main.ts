@@ -25,7 +25,7 @@ async function bootstrap() {
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, options);
-  SwaggerModule.setup('/doc-api', app, document);
+  SwaggerModule.setup('/api-docs', app, document);
 
   app
     .useStaticAssets(join(__dirname, '../public'), {

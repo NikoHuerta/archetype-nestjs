@@ -1,2 +1,1 @@
-export * from './captcha.guard';
-export * from './token.guard';
+export * from './jwt-auth.guard';

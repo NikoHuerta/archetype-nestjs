@@ -1,5 +1,6 @@
 import { Injectable, NestMiddleware, Logger } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
+import { noLogEndpoints } from '../constants';
 import { LoggerService } from '../logger/logger.service';
 
 @Injectable()
@@ -16,12 +17,14 @@ export class LoggerMiddleware implements NestMiddleware {
       bodyStr = JSON.stringify(request.body);
     }
 
-    this.logger.log(
-      `${method} ${originalUrl}|FromIp:${ip}${
-        !bodyStr ? '' : '|Req-Body: ' + bodyStr
-      } |Req-UserAgent:${userAgent}`,
-      'Request',
-    );
+    if (!noLogEndpoints.includes(originalUrl)) {
+      this.logger.log(
+        `${method} ${originalUrl}|FromIp:${ip}${
+          !bodyStr ? '' : '|Req-Body: ' + bodyStr
+        } |Req-UserAgent:${userAgent}`,
+        'Request',
+      );
+    }
 
     next();
   }

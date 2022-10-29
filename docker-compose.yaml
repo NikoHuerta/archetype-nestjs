@@ -2,24 +2,17 @@ version: '3.5'
 services:
   redis:
     image: "redis:alpine"
-    command: redis-server --requirepass rediscoopeuch
-    container_name: redis_msauthprepago
+    command: redis-server --requirepass redistest
+    container_name: redis_test
     ports:
       - "6379:6379"
-  db:
-    image: postgres
+  dbMongo:
+    image: mongo:5.0.0
     restart: always
-    container_name: postgres_msauthprepago
+    container_name: mongo_mstest
     ports:
-      - 5432:5432
+      - 27020:27017
     environment:
-      POSTGRES_PASSWORD: root
-      POSTGRES_USER: root
-      POSTGRES_PORT: 5432
-      POSTGRES_DB: msauthprepago
-  adminer:
-    image: adminer
-    container_name: adminer_msauthprepago
-    restart: always
-    ports:
-      - 8080:8080
+      MONGODB_DATABASE: test-db
+    volumes:
+      - ./mongo:/data/db

@@ -1,1 +1,1 @@
-export * from './rut.valudator';
+export * from './rut.validator';

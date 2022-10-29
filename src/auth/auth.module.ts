@@ -1,33 +1,25 @@
-import { Global, Module } from '@nestjs/common';
-import { HttpModule } from '@nestjs/axios';
+import { Module } from '@nestjs/common';
+import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
-import { ConfigService } from '@nestjs/config';
 
+import { LocalStrategy, JwtStrategy } from './strategy';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 
-@Global()
+import { UsersModule } from '@src/users/users.module';
+
 @Module({
   imports: [
-    HttpModule,
+    UsersModule,
+    PassportModule,
     JwtModule.registerAsync({
-      inject: [ConfigService],
-      useFactory: async (configService: ConfigService) => ({
-        privateKey: configService.get('JWT_PRIVATE_KEY'),
-        publicKey: configService.get('JWT_PUBLIC_KEY'),
-        signOptions: {
-          // algorithm: configService.get('JWT_ALGORITHM'),
-          expiresIn: configService.get('JWT_EXPIRES_IN'),
-          // header: {
-          //   kid: 'Coopeuch Chile',
-          //   alg: configService.get('JWT_ALGORITHM'),
-          // },
-        },
+      useFactory: () => ({
+        secret: process.env.JWT_SECRET_KEY,
+        signOptions: { expiresIn: '600s' },
       }),
     }),
   ],
-  providers: [AuthService],
+  providers: [AuthService, LocalStrategy, JwtStrategy],
   controllers: [AuthController],
-  exports: [AuthService],
 })
 export class AuthModule {}
