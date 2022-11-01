@@ -17,7 +17,6 @@ import { UsersService } from './users.service';
 import { CreateUserRequestDto } from './dto/create-user.request.dto';
 import { UpdateUserRequestDto } from './dto/update-user.request.dto';
 import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { ObjectID } from 'typeorm';
 
 @ApiTags('users')
 @Controller('users')
