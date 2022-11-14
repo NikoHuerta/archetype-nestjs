@@ -22,6 +22,7 @@ import { GlobalExceptionsFilter } from '@filters';
 import { LoggerInterceptor } from './_common/interceptor';
 import { LoggerMiddleware } from './_common/middleware';
 import { ExampleResourceModule } from './example-resource/example-resource.module';
+import { TelegramBotModule } from './telegram-bot/telegram-bot.module';
 
 @Module({
   imports: [
@@ -57,6 +58,7 @@ import { ExampleResourceModule } from './example-resource/example-resource.modul
     RepositoryModule,
     UsersModule,
     AuthModule,
+    TelegramBotModule,
     ExampleResourceModule,
   ],
   controllers: [AppController],
