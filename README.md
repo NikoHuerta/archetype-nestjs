@@ -1,6 +1,6 @@
 ## Descripción
 
-Micro servicio authprepago
+Micro servicio arquetipo NestJS + mongodb
 
 ## Estructura
 ```
@@ -71,27 +71,6 @@ $ npm install
 $ npm run composer-up
 ```
 
-##Migraciones
-
-###Correr migraciones
-```bash
-$ npm run typeorm:run-migrations
-```
-
-###Crear migracion
-```bash
-$ npm run typeorm:create-migration --name=nombre
-```
-
-###Generar migracion
-```bash
-$ npm run typeorm:generate-migration --name=nombre
-```
-
-###Revertir ultima migracion
-```bash
-$ npm run typeorm:revert-migration
-```
 
 ##Archivo .env 
 Se debe de generar un archivo tomando como base el .env.example y asignar los valores respectivos, el .env se toma dependiendo del ambiente, estos son los nombre de archivos validos
@@ -123,4 +102,3 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
-
