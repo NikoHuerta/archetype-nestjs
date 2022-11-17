@@ -10,4 +10,4 @@ import { RsPersonService } from './rs-person.service';
   providers: [RsAuthService, RsPersonService],
   exports: [RsAuthService, RsPersonService],
 })
-export class CoopeuchModule {}
+export class ApiModule {}
