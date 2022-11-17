@@ -8,18 +8,18 @@ import {
 } from '@interfaces';
 
 /**
- * Servicio Fuse RsServicioAutenticacion
- * doc: https://confluence.coopeuch.cl/display/CIOS/ServicioAutenticacion
+ * Example REST API Service
+ * docs: ***
  */
 @Injectable()
-export class RsAuthService {
+export class RsExampleService {
   constructor(
     private readonly httpService: HttpService,
     private readonly configService: ConfigService<NodeJS.ProcessEnv>,
   ) {}
 
   /**
-   * doc: https://confluence.coopeuch.cl/display/CIOS/ServicioAutenticacion#ServicioAutenticacion-ValidaUser
+   * doc: **********
    * @param {RsAuthServiceValidaUserRequest} payload
    * @return {RsAuthServiceValidaUserResponse}
    */
@@ -28,9 +28,7 @@ export class RsAuthService {
   ): Promise<RsAuthServiceValidaUserResponse> {
     const { data } =
       await this.httpService.axiosRef.post<RsAuthServiceValidaUserResponse>(
-        `${this.configService.get<string>(
-          'RS_SERVICIO_AUTENTICACION',
-        )}/validaUser`,
+        `${this.configService.get<string>('RS_EXAMPLE')}/exampleEndpoint`,
         payload,
       );
 

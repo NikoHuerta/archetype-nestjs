@@ -8,18 +8,18 @@ import {
 } from '@interfaces';
 
 /**
- * Servicio Fuse RSServicioPersona
- * doc: https://confluence.coopeuch.cl/display/CIOS/ServicioPersona
+ * Example REST API Service 2
+ * docs: ***
  */
 @Injectable()
-export class RsPersonService {
+export class RsExample2Service {
   constructor(
     private readonly httpService: HttpService,
     private readonly configService: ConfigService<NodeJS.ProcessEnv>,
   ) {}
 
   /**
-   * doc: https://confluence.coopeuch.cl/display/CIOS/ServicioPersona#ServicioPersona-traerDatosBasicos
+   * doc: **********
    * @param {RsPersonServiceTraerDatosBasicosRequest} payload
    * @return {RsPersonServiceTraerDatosBasicosResponse}
    */
@@ -28,9 +28,7 @@ export class RsPersonService {
   ): Promise<RsPersonServiceTraerDatosBasicosResponse> {
     const { data } =
       await this.httpService.axiosRef.post<RsPersonServiceTraerDatosBasicosResponse>(
-        `${this.configService.get<string>(
-          'RS_SERVICIO_PERSONA',
-        )}/traerDatosBasicos`,
+        `${this.configService.get<string>('RS_EXAMPLE_2')}/exampleEndpoint`,
         payload,
       );
 

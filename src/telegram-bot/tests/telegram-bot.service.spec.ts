@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AuthServiceFuseService } from '../fuse.service';
+import { TelegramBotService } from '../telegram-bot.service';
 
-describe('FuseService', () => {
-  let service: AuthServiceFuseService;
+describe('TelegramBotService', () => {
+  let service: TelegramBotService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [AuthServiceFuseService],
+      providers: [TelegramBotService],
     }).compile();
 
-    service = module.get<AuthServiceFuseService>(AuthServiceFuseService);
+    service = module.get<TelegramBotService>(TelegramBotService);
   });
 
   it('should be defined', () => {
