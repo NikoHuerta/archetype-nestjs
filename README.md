@@ -80,7 +80,9 @@ $ npm install
 $ npm run composer-up
 ```
 
+
 ## File .env 
+
 Generate a file based on .env.example, fill the values and rename to:
 * .env is used in cloud pipelines
 * .env.local is used for local development
@@ -113,4 +115,3 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
-
