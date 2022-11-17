@@ -1,8 +1,17 @@
-## Descripción
+## Description
 
-Micro servicio arquetipo NestJS + mongodb
+Archetype based on Hexagonal Architecture using NestJS, integrated with MongoDB.
 
-## Estructura
+## Features
+* Hexagonal Architecture
+* JWT Auth
+* Users CRUD
+* Telegram Bot
+* External API integration
+* Log features
+* Swagger Documentation (OpenAPI)
+
+## Structure
 ```
 .
 ├── README.md
@@ -64,7 +73,7 @@ Micro servicio arquetipo NestJS + mongodb
 
 
 ```
-## Installation
+## Instalation
 
 ```bash
 $ npm install
@@ -72,8 +81,12 @@ $ npm run composer-up
 ```
 
 
-##Archivo .env 
-Se debe de generar un archivo tomando como base el .env.example y asignar los valores respectivos, el .env se toma dependiendo del ambiente, estos son los nombre de archivos validos
+## File .env 
+
+Generate a file based on .env.example, fill the values and rename to:
+* .env is used in cloud pipelines
+* .env.local is used for local development
+
 ```bash
 .env
 .env.local
