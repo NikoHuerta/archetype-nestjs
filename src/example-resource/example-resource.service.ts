@@ -10,37 +10,22 @@ export class ExampleResourceService {
   ) {}
 
   async create(createExampleResourceDto: CreateExampleResourceDto) {
-    await this.rsDiscordWebhookService.ExecuteWebhook(
-      `This action adds a new exampleResource`,
-    );
     return 'This action adds a new exampleResource';
   }
 
   async findAll() {
-    await this.rsDiscordWebhookService.ExecuteWebhook(
-      `This action returns all exampleResource`,
-    );
     return `This action returns all exampleResource`;
   }
 
   async findOne(id: number) {
-    await this.rsDiscordWebhookService.ExecuteWebhook(
-      `This action returns a #${id} exampleResource`,
-    );
     return `This action returns a #${id} exampleResource`;
   }
 
   async update(id: number, updateExampleResourceDto: UpdateExampleResourceDto) {
-    await this.rsDiscordWebhookService.ExecuteWebhook(
-      `This action updates a #${id} exampleResource`,
-    );
     return `This action updates a #${id} exampleResource`;
   }
 
   async remove(id: number) {
-    await this.rsDiscordWebhookService.ExecuteWebhook(
-      `This action removes a #${id} exampleResource`,
-    );
     return `This action removes a #${id} exampleResource`;
   }
 }
