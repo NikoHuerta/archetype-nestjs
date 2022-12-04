@@ -6,13 +6,14 @@ Archetype based on Hexagonal Architecture using NestJS, integrated with MongoDB.
 * Hexagonal Architecture
 * JWT Auth
 * Users CRUD
+* Telegram Bot Message API
+* Discord Webhook Message API
 * External API integration
-* Telegram Bot
 * Log features
 * Swagger Documentation (OpenAPI)
 
 ## TO DO
-* Discord Comunication System (In Progress)
+* Please feel free to recomend something to add to this repository
 
 ## Structure
 ```
