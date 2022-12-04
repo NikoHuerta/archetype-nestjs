@@ -28,42 +28,45 @@ export class ExampleResourceController {
     summary: 'This action create an exampleResource',
   })
   @Post()
-  create(@Body() createExampleResourceDto: CreateExampleResourceDto) {
-    return this.exampleResourceService.create(createExampleResourceDto);
+  async create(@Body() createExampleResourceDto: CreateExampleResourceDto) {
+    return await this.exampleResourceService.create(createExampleResourceDto);
   }
 
   @ApiOperation({
     summary: 'This action returns all exampleResource',
   })
   @Get()
-  findAll() {
-    return this.exampleResourceService.findAll();
+  async findAll() {
+    return await this.exampleResourceService.findAll();
   }
 
   @ApiOperation({
     summary: 'This action return an exampleResource',
   })
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.exampleResourceService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.exampleResourceService.findOne(+id);
   }
 
   @ApiOperation({
     summary: 'This action update an exampleResource',
   })
   @Patch(':id')
-  update(
+  async update(
     @Param('id') id: string,
     @Body() updateExampleResourceDto: UpdateExampleResourceDto,
   ) {
-    return this.exampleResourceService.update(+id, updateExampleResourceDto);
+    return await this.exampleResourceService.update(
+      +id,
+      updateExampleResourceDto,
+    );
   }
 
   @ApiOperation({
     summary: 'This action delete an exampleResource',
   })
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.exampleResourceService.remove(+id);
+  async remove(@Param('id') id: string) {
+    return await this.exampleResourceService.remove(+id);
   }
 }
