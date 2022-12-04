@@ -12,15 +12,16 @@ import type { ClientOpts } from 'redis';
 import * as redisStore from 'cache-manager-redis-store';
 import { TypegooseModule } from 'nestjs-typegoose';
 
+import { GlobalExceptionsFilter } from '@filters';
+import { LoggerMiddleware } from '@common/middleware';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { AuthModule } from './auth/auth.module';
 import { RepositoryModule } from '@repository/repository.module';
 import { LoggerModule } from '@common/logger/logger.module';
+import { DiscordModule } from '@common/discord/discord.module';
+import { LoggerInterceptor } from '@common/interceptor';
+import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
-import { GlobalExceptionsFilter } from '@filters';
-import { LoggerInterceptor } from './_common/interceptor';
-import { LoggerMiddleware } from './_common/middleware';
 import { ExampleResourceModule } from './example-resource/example-resource.module';
 import { TelegramBotModule } from './telegram-bot/telegram-bot.module';
 
@@ -58,8 +59,9 @@ import { TelegramBotModule } from './telegram-bot/telegram-bot.module';
     RepositoryModule,
     UsersModule,
     AuthModule,
-    TelegramBotModule,
     ExampleResourceModule,
+    TelegramBotModule,
+    DiscordModule,
   ],
   controllers: [AppController],
   providers: [
