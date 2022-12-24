@@ -1,0 +1,318 @@
+{
+	"info": {
+		"_postman_id": "eb5901b8-8efb-4c67-91f5-7931b03988b2",
+		"name": "archetype - backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16890143"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "2fa",
+					"item": [
+						{
+							"name": "2fa generate-qr",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5pY29sYXMuaHVlcnRhQHVzYWNoLmNsIiwic3ViIjoiNjNhNjRkOThjNjlhN2U5YWVkMzM0MzIyIiwiaWF0IjoxNjcxODUwNjI5LCJleHAiOjE2NzE4NTEyMjl9.xU-CxathWabOP4vV0kB-FKzGiU927DdYN4dprhHwXSA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/2fa/generate-qr",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"2fa",
+										"generate-qr"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2fa turn-on-qr",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5pY29sYXMuaHVlcnRhQHVzYWNoLmNsIiwic3ViIjoiNjNhNjRkOThjNjlhN2U5YWVkMzM0MzIyIiwiaWF0IjoxNjcxODUyMTk4LCJleHAiOjE2NzE4NTI3OTh9.tYsyKHUrpLt0qpTAobJITnpDl6rdJ66YxLqD3bP8Wq4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"379891\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/2fa/turn-on-qr",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"2fa",
+										"turn-on-qr"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2fa login",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5pY29sYXMuaHVlcnRhQHVzYWNoLmNsIiwic3ViIjoiNjNhNjRkOThjNjlhN2U5YWVkMzM0MzIyIiwiaWF0IjoxNjcxODUyNjUwLCJleHAiOjE2NzE4NTMyNTB9.1xaBFYAhM5y9JnwRJdAqOr3FOU-CbtgfEYHmNb0INDY",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"408623\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/2fa/authenticate",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"2fa",
+										"authenticate"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"nicolas.huerta@usach.cl\",\r\n  \"password\": \"35571e9cc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/auth/signIn",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"signIn"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "create User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5pY29sYXMuaHVlcnRhQHVzYWNoLmNsIiwic3ViIjoiNjNhNjRkOThjNjlhN2U5YWVkMzM0MzIyIiwiaWF0IjoxNjcxODQzODY0LCJleHAiOjE2NzE4NDQ0NjR9.5s3uZeJ7sG78A0iyL8tJK5D4LxyGaN69xz3cpgWiHpk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"Nicolas\",\r\n  \"lastName\": \"Huerta\",\r\n  \"email\": \"nicolas.huerta@usach.cl\",\r\n  \"password\": \"35571e9cc\",\r\n  \"source\": \"google\",\r\n  \"rut\": \"17304611-1\",\r\n  \"role\": \"admin\",\r\n  \"active\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/users",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5pY29sYXMuaHVlcnRhQHVzYWNoLmNsIiwic3ViIjoiNjNhNjRkOThjNjlhN2U5YWVkMzM0MzIyIiwiaWF0IjoxNjcxODQzODY0LCJleHAiOjE2NzE4NDQ0NjR9.5s3uZeJ7sG78A0iyL8tJK5D4LxyGaN69xz3cpgWiHpk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/users",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5pY29sYXMuaHVlcnRhQHVzYWNoLmNsIiwic3ViIjoiNjNhNjRkOThjNjlhN2U5YWVkMzM0MzIyIiwiaWF0IjoxNjcxODQzODY0LCJleHAiOjE2NzE4NDQ0NjR9.5s3uZeJ7sG78A0iyL8tJK5D4LxyGaN69xz3cpgWiHpk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/users/63a64d98c69a7e9aed334322",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"63a64d98c69a7e9aed334322"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "example-resource",
+			"item": [
+				{
+					"name": "normal token",
+					"item": [
+						{
+							"name": "new",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/example-resource",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"example-resource"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "2fa token",
+					"item": [
+						{
+							"name": "get all",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
