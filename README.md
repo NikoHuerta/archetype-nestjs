@@ -12,6 +12,7 @@ Archetype based on Hexagonal Architecture using NestJS, integrated with MongoDB.
 * External API integration
 * Log features
 * Swagger Documentation (OpenAPI)
+* PostMan Collection
 
 ## TO DO
 * Do a Better typing on each method in auth module.
