@@ -14,6 +14,12 @@ export class User {
   @prop({ required: true })
   public password: string;
 
+  @prop({ required: false })
+  public twoFactorAuthSecret: string;
+
+  @prop({ required: false, default: false })
+  isTwoFactorEnable: boolean;
+
   @prop({ required: true, unique: true })
   public rut: string;
 

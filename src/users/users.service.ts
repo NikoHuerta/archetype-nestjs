@@ -16,7 +16,10 @@ export class UsersService {
   async create(createUserDto: CreateUserRequestDto) {
     createUserDto.email = createUserDto.email.toLocaleLowerCase();
     createUserDto.password = await hashPassword(createUserDto.password);
-    return await this.userRepository.create(createUserDto);
+    return await this.userRepository.create({
+      ...createUserDto,
+      isTwoFactorEnable: false,
+    });
   }
 
   async findAll(): Promise<User[]> {
@@ -54,5 +57,15 @@ export class UsersService {
     return await this.userRepository.findOne({
       email: email.toLocaleLowerCase(),
     });
+  }
+
+  async setTwoFactorAuthenticationSecret(secret: string, userId: string) {
+    const user = await this.findById(userId);
+    await this.userRepository.save(userId, { twoFactorAuthSecret: secret });
+  }
+
+  async turnOnTwoFactorAuthentication(userId: string) {
+    const user = await this.findById(userId);
+    await this.userRepository.save(userId, { isTwoFactorEnable: true });
   }
 }

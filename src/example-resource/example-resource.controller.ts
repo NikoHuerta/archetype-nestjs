@@ -14,10 +14,9 @@ import { JwtRestAuthGuard } from '@guards';
 import { ExampleResourceService } from './example-resource.service';
 import { CreateExampleResourceDto } from './dto/create-example-resource.dto';
 import { UpdateExampleResourceDto } from './dto/update-example-resource.dto';
+import { JwtTwoFactorRestAuthGuard } from '../_common/guards/jwt-two-factor-auth.guard';
 
 @ApiTags('Example-Resource')
-@ApiBearerAuth()
-@UseGuards(JwtRestAuthGuard)
 @Controller('example-resource')
 export class ExampleResourceController {
   constructor(
@@ -26,7 +25,10 @@ export class ExampleResourceController {
 
   @ApiOperation({
     summary: 'This action create an exampleResource',
+    description: 'This method use a normal Login token',
   })
+  @ApiBearerAuth()
+  @UseGuards(JwtRestAuthGuard)
   @Post()
   async create(@Body() createExampleResourceDto: CreateExampleResourceDto) {
     return await this.exampleResourceService.create(createExampleResourceDto);
@@ -34,7 +36,10 @@ export class ExampleResourceController {
 
   @ApiOperation({
     summary: 'This action returns all exampleResource',
+    description: 'This method use a 2FA Login token',
   })
+  @ApiBearerAuth()
+  @UseGuards(JwtTwoFactorRestAuthGuard)
   @Get()
   async findAll() {
     return await this.exampleResourceService.findAll();
@@ -42,7 +47,10 @@ export class ExampleResourceController {
 
   @ApiOperation({
     summary: 'This action return an exampleResource',
+    description: 'This method use a normal Login token',
   })
+  @ApiBearerAuth()
+  @UseGuards(JwtRestAuthGuard)
   @Get(':id')
   async findOne(@Param('id') id: string) {
     return await this.exampleResourceService.findOne(+id);
@@ -50,7 +58,10 @@ export class ExampleResourceController {
 
   @ApiOperation({
     summary: 'This action update an exampleResource',
+    description: 'This method use a 2FA Login token',
   })
+  @ApiBearerAuth()
+  @UseGuards(JwtTwoFactorRestAuthGuard)
   @Patch(':id')
   async update(
     @Param('id') id: string,
@@ -64,6 +75,7 @@ export class ExampleResourceController {
 
   @ApiOperation({
     summary: 'This action delete an exampleResource',
+    description: 'This method use no token',
   })
   @Delete(':id')
   async remove(@Param('id') id: string) {
