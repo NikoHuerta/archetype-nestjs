@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { comparePassword } from '@helpers';
 
-import { UsersService } from '../users/users.service';
 import { User } from '@entities';
+import { UsersService } from '../users/users.service';
 
 @Injectable()
 export class AuthService {
@@ -29,7 +29,7 @@ export class AuthService {
   }
 
   async login(user: any): Promise<any> {
-    user.password = 'Im not gonna give u the password of this user :P';
+    user.password = 'xxxxxxx';
     return {
       access_token: this.jwtService.sign({
         username: user.email,

@@ -16,9 +16,13 @@ import {
 import { UsersService } from './users.service';
 import { CreateUserRequestDto } from './dto/create-user.request.dto';
 import { UpdateUserRequestDto } from './dto/update-user.request.dto';
-import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiTags, ApiBearerAuth } from '@nestjs/swagger';
+import { UseGuards } from '@nestjs/common/decorators/core/use-guards.decorator';
+import { JwtRestAuthGuard } from '../_common/guards/jwt-auth.guard';
 
 @ApiTags('users')
+@ApiBearerAuth()
+@UseGuards(JwtRestAuthGuard)
 @Controller('users')
 export class UsersController {
   constructor(

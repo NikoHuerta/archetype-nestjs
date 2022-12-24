@@ -5,6 +5,7 @@ Archetype based on Hexagonal Architecture using NestJS, integrated with MongoDB.
 ## Features
 * Hexagonal Architecture
 * JWT Auth
+* Two Factor Auth
 * Users CRUD
 * Telegram Bot Message API
 * Discord Webhook Message API
@@ -13,7 +14,8 @@ Archetype based on Hexagonal Architecture using NestJS, integrated with MongoDB.
 * Swagger Documentation (OpenAPI)
 
 ## TO DO
-* Please feel free to recomend something to add to this repository
+* Do a Better typing on each method in auth module.
+
 
 ## Structure
 ```

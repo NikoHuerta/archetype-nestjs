@@ -1,8 +1,15 @@
-import { Controller, Post, UseGuards, Request } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  UseGuards,
+  Request,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { AuthService } from './auth.service';
-import { LoginUserRequestDto } from './dto';
+
 import { LocalAuthGuard } from './guards';
+import { LoginUserRequestDto } from './dto';
+import { AuthService } from './auth.service';
 
 @ApiTags('login')
 @Controller('auth')
